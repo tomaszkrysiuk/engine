@@ -42,17 +42,9 @@ void startBounceLoop(Renderer& renderer, int screenWidth, int screenHeight)
                 xStop = e.button.x;
                 yStop = e.button.y;
                 drawLine = false;
-                balls.emplace(balls.end(), Coordinates{xStart, yStart}, 10, (float)1.0, Velocity{(xStop - xStart)/20, (yStop - yStart)/20}, blackBall);
+                balls.emplace(balls.end(), Coordinates{xStart, yStart}, 10, (float)1.0, Velocity{(xStop - xStart)/20.0, (yStop - yStart)/20.0}, blackBall);
             }
         }
-
-
-
-
-
-
-
-
 
         // rysowanie i odbijanie
         renderer.clear();
