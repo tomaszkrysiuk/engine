@@ -15,6 +15,7 @@ public:
 private:
     void handleEvents();
     void addBlackBall();
+    void addWhiteBall();
     void drawLine();
     void drawBalls();
     void applyColisions();

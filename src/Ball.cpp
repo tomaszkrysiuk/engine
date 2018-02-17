@@ -57,7 +57,6 @@ void Ball::draw(Renderer& renderer)
 
 void Ball::step()
 {
-    applyAcceleration({0.0, 0.6});
     float x, y, vX, vY, aX, aY;
     std::tie(x, y) = position;
     std::tie(vX, vY) = velociy;

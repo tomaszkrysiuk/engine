@@ -3,6 +3,7 @@
 #include "Texture.h"
 #include "SDL.h"
 #include "vector"
+#include <iostream>
 #include <tuple>
 
 
@@ -70,7 +71,10 @@ void Bounce::handleEvents()
             xStop = e.button.x;
             yStop = e.button.y;
             shouldDrawLine = false;
-            addBlackBall();
+            if(e.button.button == 1)
+                addBlackBall();
+            if(e.button.button == 3)
+                addWhiteBall();
             break;
         }
         }
@@ -83,6 +87,20 @@ void Bounce::addBlackBall()
     static Texture blackBall(renderer, "circle.png");
     int radius = 20;
     float mass = 1.0;
+    balls.emplace(balls.end(),
+                  Coordinates{xStart, yStart},
+                  radius,
+                  mass,
+                  Velocity{(xStop - xStart)/20.0,
+                           (yStop - yStart)/20.0},
+                  blackBall);
+}
+
+void Bounce::addWhiteBall()
+{
+    static Texture blackBall(renderer, "circle2.png");
+    int radius = 28;
+    float mass = 3.0;
     balls.emplace(balls.end(),
                   Coordinates{xStart, yStart},
                   radius,
@@ -107,7 +125,7 @@ void Bounce::drawAndPresent()
 
     drawBalls();
 
-    renderer.setDrawColor(150, 120, 0, 255);
+    renderer.setDrawColor(0x18, 0x36, 0x93 , 255);
     renderer.present();
 }
 

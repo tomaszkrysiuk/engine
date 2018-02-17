@@ -19,7 +19,7 @@ void Colider::colide()
 
 void Colider::colideWithWalls()
 {
-    float wallBounceFactor = -0.6;
+    float wallBounceFactor = -1.0;
     for(Ball& ball : balls)
     {
         float x, y, vX, vY;
@@ -133,11 +133,18 @@ void Colider::bounce(Ball& firstBall, Ball& secondBall)
     float normalizedDistanceY = distanceY / realDistance;
 
     auto firstDot = dot({firstVelocity - secondVelocity}, {normalizedDistanceX, normalizedDistanceY});
-    auto secondDot = dot({secondVelocity - firstVelocity}, {-normalizedDistanceX, -normalizedDistanceY});
+    auto secondDot = dot({secondVelocity - firstVelocity}, {-normalizedDistanceX, -normalizedDistanceY });
 
+    float firstMass = firstBall.mass;
+    float secondMass = secondBall.mass;
 
-    firstVelocity = firstVelocity - Velocity{firstDot * normalizedDistanceX, firstDot * normalizedDistanceY};
-    secondVelocity = secondVelocity - Velocity{secondDot * -normalizedDistanceX, secondDot * -normalizedDistanceY};
+    float firstMassMultipier = 2.0 * secondMass / (firstMass + secondMass);
+    float secondMassMultipier = 2.0 * firstMass / (firstMass + secondMass);
+
+    firstVelocity = firstVelocity - Velocity{firstDot * normalizedDistanceX * firstMassMultipier,
+                                             firstDot * normalizedDistanceY * firstMassMultipier};
+    secondVelocity = secondVelocity - Velocity{secondDot * -normalizedDistanceX * secondMassMultipier,
+                                               secondDot * -normalizedDistanceY * secondMassMultipier};
 
     firstBall.setVelocity(firstVelocity);
     secondBall.setVelocity(secondVelocity);
