@@ -8,6 +8,11 @@ using Velocity = std::tuple<float, float>;
 using Acceleration = std::tuple<float, float>;
 using Force = std::tuple<float, float>;
 
+Velocity operator+(const Velocity& lhs, const Velocity& rhs);
+Velocity operator-(const Velocity& lhs, const Velocity& rhs);
+
+
+
 class Ball
 {
     public:
@@ -16,6 +21,7 @@ class Ball
         Ball& operator=(const Ball& ball) = default;
 
         void applyForce(Force force);
+        void applyForce(float fX, float fY);
         void applyAcceleration(Acceleration acceleration);
 
 

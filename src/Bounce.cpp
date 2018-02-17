@@ -22,6 +22,13 @@ void Bounce::start()
         applyColisions();
         drawAndPresent();
     }
+    if(restart)
+    {
+        restart = false;
+        quit = false;
+        balls.clear();
+        start();
+    }
 }
 
 void Bounce::handleEvents()
@@ -34,6 +41,15 @@ void Bounce::handleEvents()
         case SDL_QUIT:
         {
             quit = true;
+            break;
+        }
+        case SDL_KEYDOWN:
+        {
+            if(e.key.keysym.sym == SDLK_SPACE)
+            {
+                quit = true;
+                restart =true;
+            }
             break;
         }
         case SDL_MOUSEBUTTONDOWN:
@@ -65,7 +81,7 @@ void Bounce::handleEvents()
 void Bounce::addBlackBall()
 {
     static Texture blackBall(renderer, "circle.png");
-    int radius = 10;
+    int radius = 20;
     float mass = 1.0;
     balls.emplace(balls.end(),
                   Coordinates{xStart, yStart},

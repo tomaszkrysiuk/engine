@@ -26,6 +26,7 @@ private:
     int yStop = 0;
     bool shouldDrawLine = false;
     bool quit = false;
+    bool restart = false;
     int screenWidth;
     int screenHeight;
     Renderer& renderer;

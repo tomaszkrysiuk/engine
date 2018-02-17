@@ -19,6 +19,13 @@ void Ball::applyForce(Force force)
     acceleration = std::make_tuple(aX + fX/mass, aY + fX/mass);
 }
 
+void Ball::applyForce(float fX, float fY)
+{
+    float aX, aY;
+    std::tie(aX, aY) = acceleration;
+    acceleration = std::make_tuple(aX + fX/mass, aY + fX/mass);
+}
+
 void Ball::applyAcceleration(Acceleration acc)
 {
     acceleration = std::make_tuple(std::get<0>(acceleration) + std::get<0>(acc),
@@ -50,10 +57,17 @@ void Ball::draw(Renderer& renderer)
 
 void Ball::step()
 {
-    float x, y, vX, vY;
+    applyAcceleration({0.0, 0.6});
+    float x, y, vX, vY, aX, aY;
     std::tie(x, y) = position;
     std::tie(vX, vY) = velociy;
+    std::tie(aX, aY) = acceleration;
+    vX += aX;
+    vY += aY;
+
     position = std::make_tuple(x + vX, y + vY);
+    velociy = std::make_tuple(vX, vY);
+    acceleration = std::make_tuple(0.0, 0.0);
 }
 
 const Velocity& Ball::getVelocity()
@@ -68,4 +82,20 @@ void Ball::setVelocity(float vX, float vY)
 void Ball::setVelocity(Velocity newVelocity)
 {
     velociy = newVelocity;
+}
+
+Velocity operator+(const Velocity& lhs, const Velocity& rhs)
+{
+    float lhsX, lhsY, rhsX, rhsY;
+    std::tie(lhsX, lhsY) = lhs;
+    std::tie(rhsX, rhsY) = rhs;
+    return std::make_tuple(lhsX + rhsX, lhsY + rhsY);
+}
+
+Velocity operator-(const Velocity& lhs, const Velocity& rhs)
+{
+    float lhsX, lhsY, rhsX, rhsY;
+    std::tie(lhsX, lhsY) = lhs;
+    std::tie(rhsX, rhsY) = rhs;
+    return std::make_tuple(lhsX - rhsX, lhsY - rhsY);
 }

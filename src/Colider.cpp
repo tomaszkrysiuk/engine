@@ -2,6 +2,7 @@
 #include <tuple>
 #include <math.h>
 #include <iostream>
+#include <cmath>
 
 Colider::Colider(std::vector<Ball>& b, int w, int h):
     balls(b),
@@ -18,6 +19,7 @@ void Colider::colide()
 
 void Colider::colideWithWalls()
 {
+    float wallBounceFactor = -0.6;
     for(Ball& ball : balls)
     {
         float x, y, vX, vY;
@@ -27,22 +29,22 @@ void Colider::colideWithWalls()
         if(x < 0 + ball.radius)
         {
             x =0 + ball.radius;
-            vX *= -1;
+            vX *= wallBounceFactor;
         }
         if(x > screenWidth - ball.radius)
         {
             x = screenWidth - ball.radius;
-            vX *= -1;
+            vX *= wallBounceFactor;
         }
         if(y < 0 + ball.radius)
         {
             y =0 + ball.radius;
-            vY *= -1;
+            vY *= wallBounceFactor;
         }
         if(y > screenHeight - ball.radius)
         {
             y = screenHeight - ball.radius;
-            vY *= -1;
+            vY *= wallBounceFactor;
         }
 
         ball.position = std::make_tuple(x, y);
@@ -85,18 +87,66 @@ bool Colider::circumscribedSquaresColide()
 
 bool Colider::ballsColided()
 {
-    std::cout << "cos" << std::endl;
-    xDistance = firstX - secondX;
-    yDistance = firstY - secondY;
-    realDistance = sqrt(pow(xDistance, 2) + pow(yDistance, 2));
+    distanceX = firstX - secondX;
+    distanceY = firstY - secondY;
+    realDistance = sqrt(pow(distanceX, 2) + pow(distanceY, 2));
 
     return (realDistance <= colisionDistance);
 }
 
 void Colider::applyColision(Ball& firstBall, Ball& secondBall)
 {
-    firstBall.velociy = std::make_tuple(0.0, 0.0);
-    secondBall.velociy = std::make_tuple(0.0, 0.0);
+    separate(firstBall, secondBall);
+    bounce(firstBall, secondBall);
 }
 
+void Colider::separate(Ball& firstBall, Ball& secondBall)
+{
+    if(realDistance <= colisionDistance)
+    {
+        if(realDistance != 0)
+        {
+            float distanceRatio = colisionDistance / realDistance;
+            distanceX *= distanceRatio;
+            distanceY *= distanceRatio;
+            firstX =  secondX + distanceX;
+            firstY =  secondY + distanceY;
+        }
+        else if (realDistance == 0)
+        {
+            firstX = secondX + colisionDistance/2;
+            secondX = firstX - colisionDistance;
+        }
+        realDistance = colisionDistance;
+        firstBall.setPosition(firstX, firstY);
+        secondBall.setPosition(secondX, secondY);
+    }
 
+}
+
+void Colider::bounce(Ball& firstBall, Ball& secondBall)
+{
+    Velocity firstVelocity = firstBall.getVelocity();
+    Velocity secondVelocity = secondBall.getVelocity();
+
+    float normalizedDistanceX = distanceX / realDistance;
+    float normalizedDistanceY = distanceY / realDistance;
+
+    auto firstDot = dot({firstVelocity - secondVelocity}, {normalizedDistanceX, normalizedDistanceY});
+    auto secondDot = dot({secondVelocity - firstVelocity}, {-normalizedDistanceX, -normalizedDistanceY});
+
+
+    firstVelocity = firstVelocity - Velocity{firstDot * normalizedDistanceX, firstDot * normalizedDistanceY};
+    secondVelocity = secondVelocity - Velocity{secondDot * -normalizedDistanceX, secondDot * -normalizedDistanceY};
+
+    firstBall.setVelocity(firstVelocity);
+    secondBall.setVelocity(secondVelocity);
+}
+
+float Colider::dot(const std::tuple<float, float>& lhs, const std::tuple<float, float>& rhs)
+{
+    float lhsX, lhsY, rhsX, rhsY;
+    std::tie(lhsX, lhsY) = lhs;
+    std::tie(rhsX, rhsY) = rhs;
+    return lhsX * rhsX + lhsY * rhsY;
+}

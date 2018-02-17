@@ -15,6 +15,9 @@ private:
     bool circumscribedSquaresColide();
     bool ballsColided();
     void applyColision(Ball& firstBall, Ball& secondBall);
+    void separate(Ball& firstBall, Ball& secondBall);
+    void bounce(Ball& firstBall, Ball& secondBall);
+    float dot(const std::tuple<float, float>& lhs, const std::tuple<float, float>& rhs);
 
     std::vector<Ball>& balls;
     int screenWidth;
@@ -26,6 +29,6 @@ private:
     float firstY;
     float secondX;
     float secondY;
-    float xDistance;
-    float yDistance;
+    float distanceX;
+    float distanceY;
 };
