@@ -727,7 +727,7 @@
 	<SDL_image.h>
 	"Window.h"
 
-1518855137 source:c:\tomasz\cpp\bounce\src\bounce.cpp
+1518858320 source:c:\tomasz\cpp\bounce\src\bounce.cpp
 	"Bounce.h"
 	"Ball.h"
 	"Texture.h"
@@ -735,8 +735,19 @@
 	"vector"
 	<tuple>
 
-1518855886 c:\tomasz\cpp\bounce\include\bounce.h
+1518858291 c:\tomasz\cpp\bounce\include\bounce.h
 	<vector>
 	"Renderer.h"
 	"Ball.h"
+	"Colider.h"
+
+1518861568 c:\tomasz\cpp\bounce\include\colider.h
+	"Ball.h"
+	<vector>
+
+1518861953 source:c:\tomasz\cpp\bounce\src\colider.cpp
+	"Colider.h"
+	<tuple>
+	<math.h>
+	<iostream>
 

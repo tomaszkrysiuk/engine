@@ -78,36 +78,8 @@ void Bounce::addBlackBall()
 
 void Bounce::applyColisions()
 {
-    for(Ball& ball : balls)
-    {
-        float x, y, vX, vY;
-        std::tie(x, y) = ball.position;
-        std::tie(vX, vY) = ball.velociy;
-
-        if(x < 0 + ball.radius)
-        {
-            x =0 + ball.radius;
-            vX *= -1;
-        }
-        if(x > screenWidth - ball.radius)
-        {
-            x = screenWidth - ball.radius;
-            vX *= -1;
-        }
-        if(y < 0 + ball.radius)
-        {
-            y =0 + ball.radius;
-            vY *= -1;
-        }
-        if(y > screenHeight - ball.radius)
-        {
-            y = screenHeight - ball.radius;
-            vY *= -1;
-        }
-
-        ball.position = std::make_tuple(x, y);
-        ball.velociy = std::make_tuple(vX, vY);
-    }
+    static Colider c(balls, screenWidth, screenHeight);
+    c.colide();
 }
 
 void Bounce::drawAndPresent()

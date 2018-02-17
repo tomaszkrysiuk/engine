@@ -3,6 +3,7 @@
 #include <vector>
 #include "Renderer.h"
 #include "Ball.h"
+#include "Colider.h"
 
 class Bounce
 {
@@ -16,6 +17,8 @@ private:
     void addBlackBall();
     void drawLine();
     void drawBalls();
+    void applyColisions();
+    void drawAndPresent();
 
     int xStart = 0;
     int xStop = 0;
