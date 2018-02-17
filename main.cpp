@@ -24,7 +24,8 @@ int main( int argc, char* args[] )
 	Renderer renderer(SDL_CreateRenderer(window.getWindow(), -1, rendererFlags));
 
 
-	Bounce::startBounceLoop(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+	Bounce app(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+	app.start();
 
 
 	return 0;
