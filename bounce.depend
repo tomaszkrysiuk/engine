@@ -673,7 +673,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1518958805 source:c:\tomasz\cpp\bounce\src\ball.cpp
+1518965097 source:c:\tomasz\cpp\bounce\src\ball.cpp
 	"Ball.h"
 
 1518954863 c:\tomasz\cpp\bounce\include\ball.h
@@ -727,7 +727,7 @@
 	<SDL_image.h>
 	"Window.h"
 
-1518962173 source:c:\tomasz\cpp\bounce\src\bounce.cpp
+1518966224 source:c:\tomasz\cpp\bounce\src\bounce.cpp
 	"Bounce.h"
 	"Ball.h"
 	"Texture.h"
@@ -772,6 +772,10 @@
 	"NonElasticColider.h"
 	"Colider.h"
 
-1518962094 source:c:\tomasz\cpp\bounce\src\keplercolider.cpp
+1518965785 source:c:\tomasz\cpp\bounce\src\keplercolider.cpp
 	"KeplerColider.h"
+	<cmath>
+	<math.h>
+	<iostream>
+	<tuple>
 

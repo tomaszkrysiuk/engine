@@ -16,14 +16,14 @@ void Ball::applyForce(Force force)
     float fX, fY, aX, aY;
     std::tie(fX, fY) = force;
     std::tie(aX, aY) = acceleration;
-    acceleration = std::make_tuple(aX + fX/mass, aY + fX/mass);
+    acceleration = std::make_tuple(aX + fX/mass, aY + fY/mass);
 }
 
 void Ball::applyForce(float fX, float fY)
 {
     float aX, aY;
     std::tie(aX, aY) = acceleration;
-    acceleration = std::make_tuple(aX + fX/mass, aY + fX/mass);
+    acceleration = std::make_tuple(aX + fX/mass, aY + fY/mass);
 }
 
 void Ball::applyAcceleration(Acceleration acc)
