@@ -6,7 +6,7 @@
 #include <iostream>
 #include <tuple>
 #include <memory>
-#include "PerfectyElasticColider.h"
+#include "NonElasticColider.h"
 
 
 Bounce::Bounce(Renderer& r, int w, int h):
@@ -131,7 +131,7 @@ void Bounce::addRedBall()
 
 void Bounce::applyColisions()
 {
-    static std::unique_ptr<Colider> c = std::make_unique<PerfectlyElasticColider>(balls,
+    static std::unique_ptr<Colider> c = std::make_unique<NonElasticColider>(balls,
                                         screenWidth,
                                         screenHeight);
     c->colide();

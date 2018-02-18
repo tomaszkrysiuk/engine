@@ -761,3 +761,9 @@
 1518954365 c:\tomasz\cpp\bounce\include\perfectyelasticcolider.h
 	"Colider.h"
 
+1518957136 source:c:\tomasz\cpp\bounce\src\nonelasticcolider.cpp
+	"NonElasticColider.h"
+
+1518957006 c:\tomasz\cpp\bounce\include\nonelasticcolider.h
+	"Colider.h"
+

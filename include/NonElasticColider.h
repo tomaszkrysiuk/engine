@@ -1,7 +1,7 @@
 #pragma once
 #include "Colider.h"
 
-class PerfectlyElasticColider :
+class NonElasticColider :
 public Colider
 {
     using Colider::Colider;

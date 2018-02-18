@@ -1,6 +1,6 @@
-#include "PerfectyElasticColider.h"
+#include "NonElasticColider.h"
 
-void PerfectlyElasticColider::setVelocitiesAfterColision(Ball& firstBall, Ball& secondBall)
+void NonElasticColider::setVelocitiesAfterColision(Ball& firstBall, Ball& secondBall)
 {
     Velocity firstVelocity = firstBall.getVelocity();
     Velocity secondVelocity = secondBall.getVelocity();
@@ -14,7 +14,7 @@ void PerfectlyElasticColider::setVelocitiesAfterColision(Ball& firstBall, Ball& 
     secondBall.setVelocity(finalVelocity);
 }
 
-void PerfectlyElasticColider::colideWithWalls()
+void NonElasticColider::colideWithWalls()
 {
     for(Ball& ball : balls)
     {
