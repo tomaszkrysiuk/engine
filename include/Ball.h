@@ -10,6 +10,9 @@ using Force = std::tuple<float, float>;
 
 Velocity operator+(const Velocity& lhs, const Velocity& rhs);
 Velocity operator-(const Velocity& lhs, const Velocity& rhs);
+Velocity operator*(const Velocity& lhs, const float& rhs);
+Velocity operator*(const float& lhs, const Velocity& rhs);
+Velocity operator/(const Velocity& lhs, const float& rhs);
 
 
 
@@ -33,7 +36,7 @@ class Ball
         void setPosition(float x, float y);
         void setPosition(Coordinates);
 
-        void draw(Renderer& renderer);
+        void draw(Renderer& renderer, int w, int h);
         void step();
 
         Coordinates position;

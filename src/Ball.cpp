@@ -47,12 +47,46 @@ void Ball::setPosition(Coordinates newPosition)
     position = newPosition;
 }
 
-void Ball::draw(Renderer& renderer)
+void Ball::draw(Renderer& renderer, int w, int h)
 {
     int x, y;
     std::tie(x, y) = position;
     SDL_Rect rect{x - radius, y - radius, radius * 2, radius * 2};
     renderer.draw(*texture, nullptr, &rect);
+    int flipX = 0;
+    if(x < 0 + radius)
+    {
+        rect = {x - radius + w, y - radius, radius * 2, radius * 2};
+        renderer.draw(*texture, nullptr, &rect);
+        flipX = 1;
+    }
+    if(x > w - radius)
+    {
+        rect = {x - radius - w, y - radius, radius * 2, radius * 2};
+        renderer.draw(*texture, nullptr, &rect);
+        flipX = -1;
+    }
+    if(y < 0 + radius)
+    {
+        rect = {x - radius, y - radius + h, radius * 2, radius * 2};
+        renderer.draw(*texture, nullptr, &rect);
+        if(flipX)
+        {
+            rect = {x - radius + flipX * w, y - radius + h, radius * 2, radius * 2};
+            renderer.draw(*texture, nullptr, &rect);
+        }
+    }
+    if(y > h - radius)
+    {
+        rect = {x - radius, y - radius -h, radius * 2, radius * 2};
+        renderer.draw(*texture, nullptr, &rect);
+        if(flipX)
+        {
+            rect = {x - radius + flipX * w, y - radius + h, radius * 2, radius * 2};
+            renderer.draw(*texture, nullptr, &rect);
+        }
+    }
+
 }
 
 void Ball::step()
@@ -97,4 +131,21 @@ Velocity operator-(const Velocity& lhs, const Velocity& rhs)
     std::tie(lhsX, lhsY) = lhs;
     std::tie(rhsX, rhsY) = rhs;
     return std::make_tuple(lhsX - rhsX, lhsY - rhsY);
+}
+
+Velocity operator*(const Velocity& lhs, const float& rhs)
+{
+    float lhsX, lhsY;
+    std::tie(lhsX, lhsY) = lhs;
+    return std::make_tuple(lhsX * rhs, lhsY * rhs);
+}
+Velocity operator*(const float& lhs, const Velocity& rhs)
+{
+    return rhs * lhs;
+}
+Velocity operator/(const Velocity& lhs, const float& rhs)
+{
+    float lhsX, lhsY;
+    std::tie(lhsX, lhsY) = lhs;
+    return std::make_tuple(lhsX / rhs, lhsY / rhs);
 }

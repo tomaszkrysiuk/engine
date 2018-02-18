@@ -8,16 +8,9 @@ public:
     Colider(std::vector<Ball>& balls, int screenWidth, int screenHeight);
     void colide();
 
-private:
-    void colideWithWalls();
-    void colideWithEachOther();
-    bool colided(Ball& first, Ball& second);
-    bool circumscribedSquaresColide();
-    bool ballsColided();
-    void applyColision(Ball& firstBall, Ball& secondBall);
-    void separate(Ball& firstBall, Ball& secondBall);
-    void bounce(Ball& firstBall, Ball& secondBall);
-    float dot(const std::tuple<float, float>& lhs, const std::tuple<float, float>& rhs);
+protected:
+    virtual void colideWithWalls();
+    virtual void setVelocitiesAfterColision(Ball& firstBall, Ball& secondBall);
 
     std::vector<Ball>& balls;
     int screenWidth;
@@ -31,4 +24,13 @@ private:
     float secondY;
     float distanceX;
     float distanceY;
+
+private:
+    void colideWithEachOther();
+    bool colided(Ball& first, Ball& second);
+    bool circumscribedSquaresColide();
+    bool ballsColided();
+    void applyColision(Ball& firstBall, Ball& secondBall);
+    void separate(Ball& firstBall, Ball& secondBall);
+    float dot(const std::tuple<float, float>& lhs, const std::tuple<float, float>& rhs);
 };

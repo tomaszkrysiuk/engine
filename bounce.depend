@@ -673,10 +673,10 @@
 	"begin_code.h"
 	"close_code.h"
 
-1518877720 source:c:\tomasz\cpp\bounce\src\ball.cpp
+1518954055 source:c:\tomasz\cpp\bounce\src\ball.cpp
 	"Ball.h"
 
-1518871263 c:\tomasz\cpp\bounce\include\ball.h
+1518954863 c:\tomasz\cpp\bounce\include\ball.h
 	<tuple>
 	"Texture.h"
 	"Renderer.h"
@@ -727,7 +727,7 @@
 	<SDL_image.h>
 	"Window.h"
 
-1518950430 source:c:\tomasz\cpp\bounce\src\bounce.cpp
+1518954915 source:c:\tomasz\cpp\bounce\src\bounce.cpp
 	"Bounce.h"
 	"Ball.h"
 	"Texture.h"
@@ -735,21 +735,29 @@
 	"vector"
 	<iostream>
 	<tuple>
+	<memory>
+	"PerfectyElasticColider.h"
 
-1518950269 c:\tomasz\cpp\bounce\include\bounce.h
+1518953112 c:\tomasz\cpp\bounce\include\bounce.h
 	<vector>
 	"Renderer.h"
 	"Ball.h"
 	"Colider.h"
 
-1518872646 c:\tomasz\cpp\bounce\include\colider.h
+1518953864 c:\tomasz\cpp\bounce\include\colider.h
 	"Ball.h"
 	<vector>
 
-1518880144 source:c:\tomasz\cpp\bounce\src\colider.cpp
+1518953745 source:c:\tomasz\cpp\bounce\src\colider.cpp
 	"Colider.h"
 	<tuple>
 	<math.h>
 	<iostream>
 	<cmath>
+
+1518955399 source:c:\tomasz\cpp\bounce\src\perfectyelasticcolider.cpp
+	"PerfectyElasticColider.h"
+
+1518954365 c:\tomasz\cpp\bounce\include\perfectyelasticcolider.h
+	"Colider.h"
 

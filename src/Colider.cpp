@@ -97,7 +97,7 @@ bool Colider::ballsColided()
 void Colider::applyColision(Ball& firstBall, Ball& secondBall)
 {
     separate(firstBall, secondBall);
-    bounce(firstBall, secondBall);
+    setVelocitiesAfterColision(firstBall, secondBall);
 }
 
 void Colider::separate(Ball& firstBall, Ball& secondBall)
@@ -124,7 +124,7 @@ void Colider::separate(Ball& firstBall, Ball& secondBall)
 
 }
 
-void Colider::bounce(Ball& firstBall, Ball& secondBall)
+void Colider::setVelocitiesAfterColision(Ball& firstBall, Ball& secondBall)
 {
     Velocity firstVelocity = firstBall.getVelocity();
     Velocity secondVelocity = secondBall.getVelocity();

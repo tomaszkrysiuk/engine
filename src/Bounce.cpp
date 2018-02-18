@@ -5,6 +5,8 @@
 #include "vector"
 #include <iostream>
 #include <tuple>
+#include <memory>
+#include "PerfectyElasticColider.h"
 
 
 Bounce::Bounce(Renderer& r, int w, int h):
@@ -129,8 +131,10 @@ void Bounce::addRedBall()
 
 void Bounce::applyColisions()
 {
-    static Colider c(balls, screenWidth, screenHeight);
-    c.colide();
+    static std::unique_ptr<Colider> c = std::make_unique<PerfectlyElasticColider>(balls,
+                                        screenWidth,
+                                        screenHeight);
+    c->colide();
 }
 
 void Bounce::drawAndPresent()
@@ -142,7 +146,7 @@ void Bounce::drawAndPresent()
 
     drawBalls();
 
-    renderer.setDrawColor(0x18, 0x36, 0x93 , 255);
+    renderer.setDrawColor(0x18, 0x36, 0x93, 255);
     renderer.present();
 }
 
@@ -157,7 +161,7 @@ void Bounce::drawBalls()
     for(auto& ball : balls)
     {
         ball.step();
-        ball.draw(renderer);
+        ball.draw(renderer, screenWidth, screenHeight);
     }
 }
 
