@@ -14,7 +14,10 @@ Bounce::Bounce(Renderer& r, int w, int h):
     screenHeight(h),
     renderer(r) {}
 
-
+namespace
+{
+    const float G = 0.75;
+}
 
 
 void Bounce::start()
@@ -22,6 +25,7 @@ void Bounce::start()
     while(!quit)
     {
         handleEvents();
+        applyGravity(G);
         applyColisions();
         drawAndPresent();
     }
@@ -50,8 +54,11 @@ void Bounce::handleEvents()
         {
             if(e.key.keysym.sym == SDLK_SPACE)
             {
+                balls.clear();
+            }
+            if(e.key.keysym.sym == SDLK_ESCAPE)
+            {
                 quit = true;
-                restart =true;
             }
             break;
         }
@@ -95,8 +102,8 @@ void Bounce::addBlackBall()
                   Coordinates{xStart, yStart},
                   radius,
                   mass,
-                  Velocity{(xStop - xStart)/20.0,
-                           (yStop - yStart)/20.0},
+                  Velocity{(xStop - xStart)/15.0,
+                           (yStop - yStart)/15.0},
                   blackBall);
 }
 
@@ -109,8 +116,8 @@ void Bounce::addWhiteBall()
                   Coordinates{xStart, yStart},
                   radius,
                   mass,
-                  Velocity{(xStop - xStart)/20.0,
-                           (yStop - yStart)/20.0},
+                  Velocity{(xStop - xStart)/15.0,
+                           (yStop - yStart)/15.0},
                   whiteBall);
 }
 
@@ -124,17 +131,23 @@ void Bounce::addRedBall()
                   Coordinates{xStart, yStart},
                   radius,
                   mass,
-                  Velocity{(xStop - xStart)/20.0,
-                           (yStop - yStart)/20.0},
+                  Velocity{(xStop - xStart)/15.0,
+                           (yStop - yStart)/15.0},
                   redBall);
 }
 
 void Bounce::applyColisions()
 {
-    static std::unique_ptr<Colider> c = std::make_unique<NonElasticColider>(balls,
+    static std::unique_ptr<Colider> c = std::make_unique<Colider>(balls,
                                         screenWidth,
                                         screenHeight);
     c->colide();
+}
+
+void Bounce::applyGravity(float g)
+{
+    for(auto& b : balls)
+        b.applyAcceleration({0.0, g});
 }
 
 void Bounce::drawAndPresent()

@@ -21,6 +21,7 @@ private:
     void drawBalls();
     void applyColisions();
     void drawAndPresent();
+    void applyGravity(float g);
 
     int xStart = 0;
     int xStop = 0;

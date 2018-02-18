@@ -19,7 +19,8 @@ void Colider::colide()
 
 void Colider::colideWithWalls()
 {
-    float wallBounceFactor = -1.0;
+    float wallBounceFactor = -0.8;
+    float friction = 0.996;
     for(Ball& ball : balls)
     {
         float x, y, vX, vY;
@@ -30,21 +31,25 @@ void Colider::colideWithWalls()
         {
             x =0 + ball.radius;
             vX *= wallBounceFactor;
+            vY *= friction;
         }
         if(x > screenWidth - ball.radius)
         {
             x = screenWidth - ball.radius;
             vX *= wallBounceFactor;
+            vY *= friction;
         }
         if(y < 0 + ball.radius)
         {
             y =0 + ball.radius;
             vY *= wallBounceFactor;
+            vX *= friction;
         }
         if(y > screenHeight - ball.radius)
         {
             y = screenHeight - ball.radius;
             vY *= wallBounceFactor;
+            vX *= friction;
         }
 
         ball.position = std::make_tuple(x, y);
@@ -109,8 +114,13 @@ void Colider::separate(Ball& firstBall, Ball& secondBall)
             float distanceRatio = colisionDistance / realDistance;
             distanceX *= distanceRatio;
             distanceY *= distanceRatio;
-            firstX =  secondX + distanceX;
-            firstY =  secondY + distanceY;
+            float middleX = (firstX + secondX) / 2;
+            float middleY = (firstY + secondY) / 2;
+
+            firstX  = middleX + distanceX/2;
+            secondX = middleX - distanceX/2;
+            firstY  = middleY + distanceY/2;
+            secondY = middleY - distanceY/2;
         }
         else if (realDistance == 0)
         {
@@ -126,6 +136,7 @@ void Colider::separate(Ball& firstBall, Ball& secondBall)
 
 void Colider::setVelocitiesAfterColision(Ball& firstBall, Ball& secondBall)
 {
+    float COR = 0.8;
     Velocity firstVelocity = firstBall.getVelocity();
     Velocity secondVelocity = secondBall.getVelocity();
 
@@ -141,10 +152,10 @@ void Colider::setVelocitiesAfterColision(Ball& firstBall, Ball& secondBall)
     float firstMassMultipier = 2.0 * secondMass / (firstMass + secondMass);
     float secondMassMultipier = 2.0 * firstMass / (firstMass + secondMass);
 
-    firstVelocity = firstVelocity - Velocity{firstDot * normalizedDistanceX * firstMassMultipier,
-                                             firstDot * normalizedDistanceY * firstMassMultipier};
-    secondVelocity = secondVelocity - Velocity{secondDot * -normalizedDistanceX * secondMassMultipier,
-                                               secondDot * -normalizedDistanceY * secondMassMultipier};
+    firstVelocity = firstVelocity - Velocity{firstDot * normalizedDistanceX * firstMassMultipier * COR,
+                                             firstDot * normalizedDistanceY * firstMassMultipier * COR};
+    secondVelocity = secondVelocity - Velocity{secondDot * -normalizedDistanceX * secondMassMultipier * COR,
+                                               secondDot * -normalizedDistanceY * secondMassMultipier * COR};
 
     firstBall.setVelocity(firstVelocity);
     secondBall.setVelocity(secondVelocity);
