@@ -27,3 +27,8 @@ Texture::~Texture()
     if(texture)
         SDL_DestroyTexture(texture);
 }
+
+void Texture::setColorMod(Uint8 r, Uint8 g, Uint8 b)
+{
+    SDL_SetTextureColorMod(texture, r, g, b);
+}

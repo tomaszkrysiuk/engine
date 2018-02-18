@@ -73,6 +73,8 @@ void Bounce::handleEvents()
             shouldDrawLine = false;
             if(e.button.button == 1)
                 addBlackBall();
+            if(e.button.button == 2)
+                addRedBall();
             if(e.button.button == 3)
                 addWhiteBall();
             break;
@@ -98,8 +100,8 @@ void Bounce::addBlackBall()
 
 void Bounce::addWhiteBall()
 {
-    static Texture blackBall(renderer, "circle2.png");
-    int radius = 28;
+    static Texture whiteBall(renderer, "circle2.png");
+    int radius = 25;
     float mass = 3.0;
     balls.emplace(balls.end(),
                   Coordinates{xStart, yStart},
@@ -107,7 +109,22 @@ void Bounce::addWhiteBall()
                   mass,
                   Velocity{(xStop - xStart)/20.0,
                            (yStop - yStart)/20.0},
-                  blackBall);
+                  whiteBall);
+}
+
+void Bounce::addRedBall()
+{
+    static Texture redBall(renderer, "circle2.png");
+    redBall.setColorMod(0xFF, 0x00, 0x00);
+    int radius = 30;
+    float mass = 10;
+    balls.emplace(balls.end(),
+                  Coordinates{xStart, yStart},
+                  radius,
+                  mass,
+                  Velocity{(xStop - xStart)/20.0,
+                           (yStop - yStart)/20.0},
+                  redBall);
 }
 
 void Bounce::applyColisions()

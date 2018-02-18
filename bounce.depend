@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1518853743 source:c:\tomasz\cpp\bounce\main.cpp
+1518880671 source:c:\tomasz\cpp\bounce\main.cpp
 	<iostream>
 	"SdlInit.h"
 	"ImgInit.h"
@@ -705,10 +705,10 @@
 	"begin_code.h"
 	"close_code.h"
 
-1518810384 c:\tomasz\cpp\bounce\include\texture.h
+1518950108 c:\tomasz\cpp\bounce\include\texture.h
 	<SDL_image.h>
 
-1518810379 source:c:\tomasz\cpp\bounce\src\texture.cpp
+1518950170 source:c:\tomasz\cpp\bounce\src\texture.cpp
 	"Texture.h"
 	"Renderer.h"
 	<stdexcept>
@@ -727,7 +727,7 @@
 	<SDL_image.h>
 	"Window.h"
 
-1518878914 source:c:\tomasz\cpp\bounce\src\bounce.cpp
+1518950430 source:c:\tomasz\cpp\bounce\src\bounce.cpp
 	"Bounce.h"
 	"Ball.h"
 	"Texture.h"
@@ -736,7 +736,7 @@
 	<iostream>
 	<tuple>
 
-1518877339 c:\tomasz\cpp\bounce\include\bounce.h
+1518950269 c:\tomasz\cpp\bounce\include\bounce.h
 	<vector>
 	"Renderer.h"
 	"Ball.h"
