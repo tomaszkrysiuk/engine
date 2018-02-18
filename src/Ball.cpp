@@ -53,39 +53,39 @@ void Ball::draw(Renderer& renderer, int w, int h)
     std::tie(x, y) = position;
     SDL_Rect rect{x - radius, y - radius, radius * 2, radius * 2};
     renderer.draw(*texture, nullptr, &rect);
-//    int flipX = 0;
-//    if(x < 0 + radius)
-//    {
-//        rect = {x - radius + w, y - radius, radius * 2, radius * 2};
-//        renderer.draw(*texture, nullptr, &rect);
-////        flipX = 1;
-//    }
-//    if(x > w - radius)
-//    {
-//        rect = {x - radius - w, y - radius, radius * 2, radius * 2};
-//        renderer.draw(*texture, nullptr, &rect);
-////        flipX = -1;
-//    }
-//    if(y < 0 + radius)
-//    {
-//        rect = {x - radius, y - radius + h, radius * 2, radius * 2};
-//        renderer.draw(*texture, nullptr, &rect);
-////        if(flipX)
-////        {
-////            rect = {x - radius + flipX * w, y - radius + h, radius * 2, radius * 2};
-////            renderer.draw(*texture, nullptr, &rect);
-////        }
-//    }
-//    if(y > h - radius)
-//    {
-//        rect = {x - radius, y - radius -h, radius * 2, radius * 2};
-//        renderer.draw(*texture, nullptr, &rect);
-////        if(flipX)
-////        {
-////            rect = {x - radius + flipX * w, y - radius + h, radius * 2, radius * 2};
-////            renderer.draw(*texture, nullptr, &rect);
-////        }
-//    }
+    int flipX = 0;
+    if(x < 0 + radius)
+    {
+        rect = {x - radius + w, y - radius, radius * 2, radius * 2};
+        renderer.draw(*texture, nullptr, &rect);
+        flipX = 1;
+    }
+    if(x > w - radius)
+    {
+        rect = {x - radius - w, y - radius, radius * 2, radius * 2};
+        renderer.draw(*texture, nullptr, &rect);
+        flipX = -1;
+    }
+    if(y < 0 + radius)
+    {
+        rect = {x - radius, y - radius + h, radius * 2, radius * 2};
+        renderer.draw(*texture, nullptr, &rect);
+        if(flipX)
+        {
+            rect = {x - radius + flipX * w, y - radius + h, radius * 2, radius * 2};
+            renderer.draw(*texture, nullptr, &rect);
+        }
+    }
+    if(y > h - radius)
+    {
+        rect = {x - radius, y - radius -h, radius * 2, radius * 2};
+        renderer.draw(*texture, nullptr, &rect);
+        if(flipX)
+        {
+            rect = {x - radius + flipX * w, y - radius + h, radius * 2, radius * 2};
+            renderer.draw(*texture, nullptr, &rect);
+        }
+    }
 
 }
 
