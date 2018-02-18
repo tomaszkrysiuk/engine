@@ -88,7 +88,7 @@ void Bounce::handleEvents()
 
 void Bounce::addBlackBall()
 {
-    static Texture blackBall(renderer, "circle.png");
+    static Texture blackBall(renderer, "./data/img/circle.png");
     int radius = 20;
     float mass = 1.0;
     balls.emplace(balls.end(),
@@ -102,7 +102,7 @@ void Bounce::addBlackBall()
 
 void Bounce::addWhiteBall()
 {
-    static Texture whiteBall(renderer, "circle2.png");
+    static Texture whiteBall(renderer, "./data/img/circle2.png");
     int radius = 25;
     float mass = 3.0;
     balls.emplace(balls.end(),
@@ -116,7 +116,7 @@ void Bounce::addWhiteBall()
 
 void Bounce::addRedBall()
 {
-    static Texture redBall(renderer, "circle2.png");
+    static Texture redBall(renderer, "./data/img/circle2.png");
     redBall.setColorMod(0xFF, 0x00, 0x00);
     int radius = 30;
     float mass = 10;
