@@ -6,6 +6,7 @@
 #include <iostream>
 #include <tuple>
 #include <memory>
+#include <algorithm>
 #include "NonElasticColider.h"
 #include "KeplerColider.h"
 
@@ -17,7 +18,7 @@ Bounce::Bounce(Renderer& r, int w, int h):
 
 namespace
 {
-    const float G = 0;
+const float G = 0;
 }
 
 
@@ -28,6 +29,7 @@ void Bounce::start()
         handleEvents();
         applyGravity(G);
         applyColisions();
+        destroyIfNeeded();
         drawAndPresent();
     }
     if(restart)
@@ -112,7 +114,7 @@ void Bounce::addWhiteBall()
 {
     static Texture whiteBall(renderer, "./data/img/circle2.png");
     int radius = 7;
-    float mass = 80;
+    float mass = 10;
     balls.emplace(balls.end(),
                   Coordinates{xStart, yStart},
                   radius,
@@ -160,7 +162,7 @@ void Bounce::drawAndPresent()
 
     drawBalls();
 
-    renderer.setDrawColor(0x18, 0x36, 0x93, 255);
+    renderer.setDrawColor(0x08, 0x26, 0x83, 255);
     renderer.present();
 }
 
@@ -177,5 +179,13 @@ void Bounce::drawBalls()
         ball.step();
         ball.draw(renderer, screenWidth, screenHeight);
     }
+}
+
+void Bounce::destroyIfNeeded()
+{
+    balls.erase(std::remove_if(balls.begin(),
+                               balls.end(),
+                               [](Ball& b){return b.shouldBeDestroyed;}),
+                               balls.end());
 }
 

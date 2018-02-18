@@ -676,7 +676,7 @@
 1518965097 source:c:\tomasz\cpp\bounce\src\ball.cpp
 	"Ball.h"
 
-1518954863 c:\tomasz\cpp\bounce\include\ball.h
+1518968439 c:\tomasz\cpp\bounce\include\ball.h
 	<tuple>
 	"Texture.h"
 	"Renderer.h"
@@ -727,7 +727,7 @@
 	<SDL_image.h>
 	"Window.h"
 
-1518966224 source:c:\tomasz\cpp\bounce\src\bounce.cpp
+1518972474 source:c:\tomasz\cpp\bounce\src\bounce.cpp
 	"Bounce.h"
 	"Ball.h"
 	"Texture.h"
@@ -736,10 +736,11 @@
 	<iostream>
 	<tuple>
 	<memory>
+	<algorithm>
 	"NonElasticColider.h"
 	"KeplerColider.h"
 
-1518958482 c:\tomasz\cpp\bounce\include\bounce.h
+1518968938 c:\tomasz\cpp\bounce\include\bounce.h
 	<vector>
 	"Renderer.h"
 	"Ball.h"
@@ -772,10 +773,11 @@
 	"NonElasticColider.h"
 	"Colider.h"
 
-1518965785 source:c:\tomasz\cpp\bounce\src\keplercolider.cpp
+1518972034 source:c:\tomasz\cpp\bounce\src\keplercolider.cpp
 	"KeplerColider.h"
 	<cmath>
 	<math.h>
 	<iostream>
 	<tuple>
+	<stdlib.h>
 

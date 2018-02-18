@@ -22,6 +22,7 @@ private:
     void applyColisions();
     void drawAndPresent();
     void applyGravity(float g);
+    void destroyIfNeeded();
 
     int xStart = 0;
     int xStop = 0;

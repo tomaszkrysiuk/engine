@@ -45,5 +45,6 @@ class Ball
         Velocity velociy;
         Acceleration acceleration;
         const Texture * texture;
+        bool shouldBeDestroyed = false;
 
 };
