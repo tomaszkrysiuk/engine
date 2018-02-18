@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1518957326 source:c:\tomasz\cpp\bounce\main.cpp
+1518960691 source:c:\tomasz\cpp\bounce\main.cpp
 	<iostream>
 	"SdlInit.h"
 	"ImgInit.h"
@@ -727,7 +727,7 @@
 	<SDL_image.h>
 	"Window.h"
 
-1518959328 source:c:\tomasz\cpp\bounce\src\bounce.cpp
+1518962173 source:c:\tomasz\cpp\bounce\src\bounce.cpp
 	"Bounce.h"
 	"Ball.h"
 	"Texture.h"
@@ -737,6 +737,7 @@
 	<tuple>
 	<memory>
 	"NonElasticColider.h"
+	"KeplerColider.h"
 
 1518958482 c:\tomasz\cpp\bounce\include\bounce.h
 	<vector>
@@ -744,7 +745,7 @@
 	"Ball.h"
 	"Colider.h"
 
-1518953864 c:\tomasz\cpp\bounce\include\colider.h
+1518961189 c:\tomasz\cpp\bounce\include\colider.h
 	"Ball.h"
 	<vector>
 
@@ -766,4 +767,11 @@
 
 1518957006 c:\tomasz\cpp\bounce\include\nonelasticcolider.h
 	"Colider.h"
+
+1518962078 c:\tomasz\cpp\bounce\include\keplercolider.h
+	"NonElasticColider.h"
+	"Colider.h"
+
+1518962094 source:c:\tomasz\cpp\bounce\src\keplercolider.cpp
+	"KeplerColider.h"
 

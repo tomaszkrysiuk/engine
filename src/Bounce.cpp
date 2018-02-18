@@ -7,6 +7,7 @@
 #include <tuple>
 #include <memory>
 #include "NonElasticColider.h"
+#include "KeplerColider.h"
 
 
 Bounce::Bounce(Renderer& r, int w, int h):
@@ -16,7 +17,7 @@ Bounce::Bounce(Renderer& r, int w, int h):
 
 namespace
 {
-    const float G = 0.75;
+    const float G = 0;
 }
 
 
@@ -138,7 +139,7 @@ void Bounce::addRedBall()
 
 void Bounce::applyColisions()
 {
-    static std::unique_ptr<Colider> c = std::make_unique<Colider>(balls,
+    static std::unique_ptr<Colider> c = std::make_unique<KeplerColider>(balls,
                                         screenWidth,
                                         screenHeight);
     c->colide();
