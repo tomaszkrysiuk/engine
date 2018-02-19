@@ -9,6 +9,8 @@
 #include <algorithm>
 #include "NonElasticColider.h"
 #include "KeplerColider.h"
+#include "SnowColider.h"
+#include <stdlib.h>
 
 
 Bounce::Bounce(Renderer& r, int w, int h):
@@ -24,6 +26,7 @@ const float G = 0;
 
 void Bounce::start()
 {
+    makeSnow(1000);
     while(!quit)
     {
         handleEvents();
@@ -141,7 +144,7 @@ void Bounce::addRedBall()
 
 void Bounce::applyColisions()
 {
-    static std::unique_ptr<Colider> c = std::make_unique<KeplerColider>(balls,
+    static std::unique_ptr<Colider> c = std::make_unique<SnowColider>(balls,
                                         screenWidth,
                                         screenHeight);
     c->colide();
@@ -162,7 +165,7 @@ void Bounce::drawAndPresent()
 
     drawBalls();
 
-    renderer.setDrawColor(0x08, 0x26, 0x83, 255);
+    renderer.setDrawColor(0x200, 0x200, 0x250, 255);
     renderer.present();
 }
 
@@ -185,7 +188,26 @@ void Bounce::destroyIfNeeded()
 {
     balls.erase(std::remove_if(balls.begin(),
                                balls.end(),
-                               [](Ball& b){return b.shouldBeDestroyed;}),
-                               balls.end());
+                               [](Ball& b)
+    {
+        return b.shouldBeDestroyed;
+    }),
+    balls.end());
 }
 
+void Bounce::makeSnow(int count)
+{
+
+    static Texture whiteBall(renderer, "./data/img/flake.png");
+    SDL_SetTextureAlphaMod(whiteBall.get(), 230);
+    for(int i = 0; i < count; i++)
+    {
+        float mass = 1;
+        balls.emplace(balls.end(),
+                      Coordinates{0, screenHeight + 100},
+                      1,
+                      1,
+                      Velocity{5,5},
+                      whiteBall);
+    }
+}

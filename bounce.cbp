@@ -59,9 +59,11 @@
 		<Unit filename="include/Colors.h" />
 		<Unit filename="include/Colors.h.save-failed" />
 		<Unit filename="include/ImgInit.h" />
-		<Unit filename="include/PerfectyElasticColider.h" />
+		<Unit filename="include/KeplerColider.h" />
+		<Unit filename="include/NonElasticColider.h" />
 		<Unit filename="include/Renderer.h" />
 		<Unit filename="include/SdlInit.h" />
+		<Unit filename="include/SnowColider.h" />
 		<Unit filename="include/Texture.h" />
 		<Unit filename="include/Window.h" />
 		<Unit filename="main.cpp" />
@@ -69,9 +71,11 @@
 		<Unit filename="src/Bounce.cpp" />
 		<Unit filename="src/Colider.cpp" />
 		<Unit filename="src/ImgInit.cpp" />
-		<Unit filename="src/PerfectyElasticColider.cpp" />
+		<Unit filename="src/KeplerColider.cpp" />
+		<Unit filename="src/NonElasticColider.cpp" />
 		<Unit filename="src/Renderer.cpp" />
 		<Unit filename="src/SdlInit.cpp" />
+		<Unit filename="src/SnowColider.cpp" />
 		<Unit filename="src/Texture.cpp" />
 		<Unit filename="src/Window.cpp" />
 		<Extensions>

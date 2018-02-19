@@ -23,6 +23,8 @@ private:
     void drawAndPresent();
     void applyGravity(float g);
     void destroyIfNeeded();
+    void makeSnow(int count);
+    int getZ();
 
     int xStart = 0;
     int xStop = 0;

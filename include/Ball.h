@@ -40,6 +40,7 @@ class Ball
         void step();
 
         Coordinates position;
+        float depth = 0;
         int radius;
         float mass;
         Velocity velociy;

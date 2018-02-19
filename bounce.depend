@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1518960691 source:c:\tomasz\cpp\bounce\main.cpp
+1518979001 source:c:\tomasz\cpp\bounce\main.cpp
 	<iostream>
 	"SdlInit.h"
 	"ImgInit.h"
@@ -673,10 +673,10 @@
 	"begin_code.h"
 	"close_code.h"
 
-1518965097 source:c:\tomasz\cpp\bounce\src\ball.cpp
+1518974022 source:c:\tomasz\cpp\bounce\src\ball.cpp
 	"Ball.h"
 
-1518968439 c:\tomasz\cpp\bounce\include\ball.h
+1518973863 c:\tomasz\cpp\bounce\include\ball.h
 	<tuple>
 	"Texture.h"
 	"Renderer.h"
@@ -727,7 +727,7 @@
 	<SDL_image.h>
 	"Window.h"
 
-1518972474 source:c:\tomasz\cpp\bounce\src\bounce.cpp
+1518978883 source:c:\tomasz\cpp\bounce\src\bounce.cpp
 	"Bounce.h"
 	"Ball.h"
 	"Texture.h"
@@ -739,8 +739,10 @@
 	<algorithm>
 	"NonElasticColider.h"
 	"KeplerColider.h"
+	"SnowColider.h"
+	<stdlib.h>
 
-1518968938 c:\tomasz\cpp\bounce\include\bounce.h
+1518976371 c:\tomasz\cpp\bounce\include\bounce.h
 	<vector>
 	"Renderer.h"
 	"Ball.h"
@@ -779,5 +781,12 @@
 	<math.h>
 	<iostream>
 	<tuple>
+	<stdlib.h>
+
+1518976850 c:\tomasz\cpp\bounce\include\snowcolider.h
+	<Colider.h>
+
+1518978721 source:c:\tomasz\cpp\bounce\src\snowcolider.cpp
+	"SnowColider.h"
 	<stdlib.h>
 
